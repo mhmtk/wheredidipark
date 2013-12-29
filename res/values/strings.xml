@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Where Did I Park?</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_store">I parked here </string>
+    <string name="button_find">Find my car </string>
+    <string name="text_current">I\'m here </string>
+    <string name="text_stored">My car is here </string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="button_map">Give me visuals</string>
+
+</resources>
