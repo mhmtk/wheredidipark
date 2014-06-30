@@ -40,6 +40,7 @@ public class MapActivity extends Activity {
 		// TODO Auto-generated method stub
 		if(mSharedPrefs.contains("curLat"))
 		{
+			Toast.makeText(getApplicationContext(), "SPref contains curr loc", Toast.LENGTH_SHORT).show();
 			LatLng curLoc = new LatLng(Double.valueOf(mSharedPrefs.getString("curLat", "0"))
 					, Double.valueOf(mSharedPrefs.getString("curLon", "0")));
 			googleMap.addMarker(new MarkerOptions()

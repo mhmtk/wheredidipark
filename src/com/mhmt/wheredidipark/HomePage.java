@@ -24,7 +24,6 @@ public class HomePage extends FragmentActivity
 implements
 GooglePlayServicesClient.ConnectionCallbacks,
 GooglePlayServicesClient.OnConnectionFailedListener
-
 {
 	LocationClient mLocClient;
 	Location mCurrentLoc;
