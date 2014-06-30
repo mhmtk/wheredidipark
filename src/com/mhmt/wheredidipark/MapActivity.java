@@ -38,11 +38,10 @@ public class MapActivity extends Activity {
 	 */
 	private void markCurrentLoc() {
 		// TODO Auto-generated method stub
-		if(mSharedPrefs.contains("curLat"))
+		if(mSharedPrefs.contains("currentLat") && mSharedPrefs.contains("currentLon"))
 		{
-			Toast.makeText(getApplicationContext(), "SPref contains curr loc", Toast.LENGTH_SHORT).show();
-			LatLng curLoc = new LatLng(Double.valueOf(mSharedPrefs.getString("curLat", "0"))
-					, Double.valueOf(mSharedPrefs.getString("curLon", "0")));
+			LatLng curLoc = new LatLng(Double.valueOf(mSharedPrefs.getString("currentLat", "0"))
+					, Double.valueOf(mSharedPrefs.getString("currentLon", "0")));
 			googleMap.addMarker(new MarkerOptions()
 			.position(curLoc)
 			.title("Me"));
@@ -53,7 +52,7 @@ public class MapActivity extends Activity {
 	 * get car loc from shared prefs if it exits, then mark it
 	 */
 	private void markCarLoc() {
-		if(mSharedPrefs.contains("carLat"))
+		if(mSharedPrefs.contains("carLat") && mSharedPrefs.contains("carLon"))
 		{
 			LatLng carLoc = new LatLng(Double.valueOf(mSharedPrefs.getString("carLat", "0"))
 					, Double.valueOf(mSharedPrefs.getString("carLon", "0")));
@@ -61,6 +60,7 @@ public class MapActivity extends Activity {
 			.position(carLoc)
 			.title("My Car"));
 		}
+		
 	}
 
 	/**
@@ -73,8 +73,7 @@ public class MapActivity extends Activity {
 			// check if map is created successfully or not
 			if (googleMap == null) {
 				Toast.makeText(getApplicationContext(),
-						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
-						.show();
+						"Sorry! unable to create maps", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}

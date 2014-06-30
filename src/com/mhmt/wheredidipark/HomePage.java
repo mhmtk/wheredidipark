@@ -78,8 +78,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 */
 	private void storeCurrentLoc(double latitude, double longitude) {
 		// TODO Auto-generated method stub
-		mSharedPrefs.edit().putString("currentLocLat", Double.toString(latitude)).commit();
-		mSharedPrefs.edit().putString("currentLocLon", Double.toString(longitude)).commit();
+		mSharedPrefs.edit().putString("currentLat", Double.toString(latitude)).commit();
+		mSharedPrefs.edit().putString("currentLon", Double.toString(longitude)).commit();
 	}
 
 	/*
@@ -95,11 +95,11 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 * displays the stored car loc if there is one
 	 */
 	private void displayCarLoc() {
-		if(mSharedPrefs.contains("CarLat")) //if there is a stored lat
+		if(mSharedPrefs.contains("carLat") && mSharedPrefs.contains("carLon")) //if there is a stored lat
 		{
 			//gets the stored car loc
-			double carLat = Double.parseDouble(mSharedPrefs.getString("CarLat", ""));
-			double carLon = Double.parseDouble(mSharedPrefs.getString("CarLon", ""));
+			double carLat = Double.parseDouble(mSharedPrefs.getString("carLat", ""));
+			double carLon = Double.parseDouble(mSharedPrefs.getString("carLon", ""));
 			//display the stored car loc on its appropriate view field
 			textCarLoc.setText(carLat + ", " + carLon);
 		}
@@ -120,8 +120,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			double carLat = mCurrentLoc.getLatitude();
 			double carLon = mCurrentLoc.getLongitude();
 
-			mSharedPrefs.edit().putString("CarLat", Double.toString(carLat)).commit();
-			mSharedPrefs.edit().putString("CarLon", Double.toString(carLon)).commit();
+			mSharedPrefs.edit().putString("carLat", Double.toString(carLat)).commit();
+			mSharedPrefs.edit().putString("carLon", Double.toString(carLon)).commit();
 
 			((TextView) findViewById(R.id.edit_storedlocation))
 			.setText(carLat + ", " + carLon);
