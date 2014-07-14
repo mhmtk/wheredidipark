@@ -1,9 +1,13 @@
 package com.mhmt.wheredidipark;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.maps.MapController;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,6 +20,7 @@ public class MapActivity extends Activity {
 
 	private GoogleMap googleMap;
 	private SharedPreferences mSharedPrefs;
+	private LatLngBounds.Builder bc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +28,20 @@ public class MapActivity extends Activity {
 		setContentView(R.layout.activity_map);
 
 		mSharedPrefs = this.getSharedPreferences("com.mhmt.wheresmycar", Context.MODE_PRIVATE);
-
+		bc = new LatLngBounds.Builder();
+		
 		try{
 			initializeMap();
 			markCurrentLoc();
 			markCarLoc();
+			
+			googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(),
+					50, //width
+					50, //height
+					10)); //fix camera
+			
+//			objMapController.zoomToSpan(Math.abs(Math.max(curLoc, carLoc)), Math.abs(Math.min(curLoc, carLoc)));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,6 +59,8 @@ public class MapActivity extends Activity {
 			googleMap.addMarker(new MarkerOptions()
 			.position(curLoc)
 			.title("Me"));
+			
+			bc.include(curLoc);
 		}
 	}
 
@@ -59,6 +75,8 @@ public class MapActivity extends Activity {
 			googleMap.addMarker(new MarkerOptions()
 			.position(carLoc)
 			.title("My Car"));
+			
+			bc.include(carLoc);
 		}
 		
 	}
@@ -69,7 +87,7 @@ public class MapActivity extends Activity {
 	private void initializeMap() {
 		if (googleMap == null) {
 			googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
-
+			
 			// check if map is created successfully or not
 			if (googleMap == null) {
 				Toast.makeText(getApplicationContext(),
@@ -82,6 +100,11 @@ public class MapActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		initializeMap();
+		
+		googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(),
+				50, //width
+				50, //height
+				10)); //fix camera
 	}
 
 	@Override

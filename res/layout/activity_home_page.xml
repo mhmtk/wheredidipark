@@ -13,7 +13,7 @@
         android:id="@+id/text_current"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_current"
+        android:text="@string/home_text_current"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
         android:id="@+id/text_stored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_stored"
+        android:text="@string/home_text_stored"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:orientation="horizontal" >
+        
 
         <Button
             android:id="@+id/button_store"
@@ -53,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="storeCarLoc"
-            android:text="@string/button_store" />
+            android:text="@string/home_button_store" />
 
         <Button
             android:id="@+id/button_map"
@@ -62,7 +63,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:onClick="viewMap"
-            android:text="@string/button_map" />
+            android:text="@string/home_button_map" />
     </LinearLayout>
 
 </LinearLayout>
