@@ -16,11 +16,17 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version July 15th, 2014
+ *
+ */
 public class MapActivity extends Activity {
 
 	private GoogleMap googleMap;
 	private SharedPreferences mSharedPrefs;
-	private LatLngBounds.Builder bc;
+	private LatLngBounds.Builder bc; // Boundary builder to use while fixing the camera
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,6 @@ public class MapActivity extends Activity {
 	 * Try to get current location from shared preferences, if it exists, mark it
 	 */
 	private void markCurrentLoc() {
-		// TODO Auto-generated method stub
 		if(mSharedPrefs.contains("currentLat") && mSharedPrefs.contains("currentLon"))
 		{
 			LatLng curLoc = new LatLng(Double.valueOf(mSharedPrefs.getString("currentLat", "0"))
@@ -65,7 +70,7 @@ public class MapActivity extends Activity {
 			.position(curLoc)
 			.title("Me"));
 			
-			bc.include(curLoc);
+			bc.include(curLoc); // add point to the latlng boundaries
 		}
 	}
 
@@ -81,7 +86,7 @@ public class MapActivity extends Activity {
 			.position(carLoc)
 			.title("My Car"));
 			
-			bc.include(carLoc);
+			bc.include(carLoc); // add point to the latlng boundaries
 		}
 		
 	}

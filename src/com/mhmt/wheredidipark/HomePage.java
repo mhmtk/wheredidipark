@@ -20,6 +20,12 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 
+/**
+ * 
+ * @author Mehmet Kologlu
+ * @version July 15th, 2014
+ *
+ */
 public class HomePage extends FragmentActivity
 implements
 GooglePlayServicesClient.ConnectionCallbacks,
