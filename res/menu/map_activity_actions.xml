@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wheredidipark="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/map_action_getDirection"
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/action_getDirection"
+        android:showAsAction="ifRoom"/>
+
+</menu>
