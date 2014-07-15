@@ -3,13 +3,15 @@ package com.mhmt.wheredidipark;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
+//import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.maps.MapController;
+//import com.google.android.maps.MapController;
+
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,6 +29,7 @@ public class MapActivity extends Activity {
 	private GoogleMap googleMap;
 	private SharedPreferences mSharedPrefs;
 	private LatLngBounds.Builder bc; // Boundary builder to use while fixing the camera
+	private ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class MapActivity extends Activity {
 
 		mSharedPrefs = this.getSharedPreferences("com.mhmt.wheresmycar", Context.MODE_PRIVATE);
 		bc = new LatLngBounds.Builder();
+		
+		actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		try{
 			initializeMap();

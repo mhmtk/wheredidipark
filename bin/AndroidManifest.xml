@@ -38,7 +38,8 @@
         </activity>
         <activity
             android:name="com.mhmt.wheredidipark.MapActivity"
-            android:label="@string/title_activity_map" >
+            android:label="@string/title_activity_map"
+            android:parentActivityName="com.mhmt.wheredidipark.HomePage" >
         </activity>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
