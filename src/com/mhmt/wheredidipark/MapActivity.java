@@ -3,11 +3,13 @@ package com.mhmt.wheredidipark;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 //import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 //import com.google.android.maps.MapController;
+
 
 
 import android.os.Bundle;
@@ -73,7 +75,9 @@ public class MapActivity extends Activity {
 					, Double.valueOf(mSharedPrefs.getString("currentLon", "0")));
 			googleMap.addMarker(new MarkerOptions()
 			.position(curLoc)
-			.title("Me"));
+			.title("Me")
+			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))
+			.showInfoWindow();
 			
 			bc.include(curLoc); // add point to the latlng boundaries
 		}
