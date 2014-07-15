@@ -13,8 +13,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 //import com.google.android.maps.MapController;
 
 
+
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+
 
 
 
@@ -32,6 +36,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 import app.alexorcist.googlemapsv2direction.GMapV2Direction;
 
@@ -155,10 +161,23 @@ public class MapActivity extends Activity {
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.map_action_getDirection:
+	            getDir();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.map, menu);
-		return true;
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.map_activity_actions, menu);
+//		getMenuInflater().inflate(R.menu.map, menu);
+	    return super.onCreateOptionsMenu(menu);
 	}
 
 }
