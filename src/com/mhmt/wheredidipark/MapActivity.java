@@ -1,5 +1,7 @@
 package com.mhmt.wheredidipark;
 
+import java.util.ArrayList;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -11,14 +13,27 @@ import com.google.android.gms.maps.model.MarkerOptions;
 //import com.google.android.maps.MapController;
 
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+
+
+
+
+
+import org.w3c.dom.Document;
+
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.Menu;
 import android.widget.Toast;
+import app.alexorcist.googlemapsv2direction.GMapV2Direction;
 
 /**
  * 
@@ -81,6 +96,23 @@ public class MapActivity extends Activity {
 			
 			bc.include(curLoc); // add point to the latlng boundaries
 		}
+	}
+	
+	private void getDir() {
+		LatLng fromPosition = new LatLng(13, 100);
+		LatLng toPosition = new LatLng(15, 150);
+
+		GMapV2Direction md = new GMapV2Direction();
+
+		Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_DRIVING);
+		ArrayList<LatLng> directionPoint = md.getDirection(doc);
+		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);
+
+		for(int i = 0 ; i < directionPoint.size() ; i++) {          
+		rectLine.add(directionPoint.get(i));
+		}
+
+		googleMap.addPolyline(rectLine);
 	}
 
 	/**
