@@ -34,21 +34,26 @@ public class MapActivity extends Activity {
 			initializeMap();
 			markCurrentLoc();
 			markCarLoc();
-			
-			googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(),
-					50, //width
-					50, //height
-					10)); //fix camera
-			
+			fixCamera();
 //			objMapController.zoomToSpan(Math.abs(Math.max(curLoc, carLoc)), Math.abs(Math.min(curLoc, carLoc)));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Fixes the camera to include both markers
+	 */
+	private void fixCamera() {
+		googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(),
+				100, //width
+				100, //height
+				0));
+	}
 
-	/*
-	 * get current loc from shared prefs if it exists then mark it
+	/**
+	 * Try to get current location from shared preferences, if it exists, mark it
 	 */
 	private void markCurrentLoc() {
 		// TODO Auto-generated method stub
@@ -64,8 +69,8 @@ public class MapActivity extends Activity {
 		}
 	}
 
-	/*
-	 * get car loc from shared prefs if it exits, then mark it
+	/**
+	 * Try to get car location from shared preferences, if it exits, mark it
 	 */
 	private void markCarLoc() {
 		if(mSharedPrefs.contains("carLat") && mSharedPrefs.contains("carLon"))
@@ -82,8 +87,8 @@ public class MapActivity extends Activity {
 	}
 
 	/**
-	 * function to load map. If map is not created it will create it for you
-	 * */
+	 * Function to load map. If map is not created it will create it for you
+	 */
 	private void initializeMap() {
 		if (googleMap == null) {
 			googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
@@ -100,11 +105,7 @@ public class MapActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		initializeMap();
-		
-		googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(),
-				50, //width
-				50, //height
-				10)); //fix camera
+		fixCamera();
 	}
 
 	@Override
