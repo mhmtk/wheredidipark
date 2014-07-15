@@ -29,7 +29,6 @@ public class MapActivity extends Activity {
 	private GoogleMap googleMap;
 	private SharedPreferences mSharedPrefs;
 	private LatLngBounds.Builder bc; // Boundary builder to use while fixing the camera
-	private ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class MapActivity extends Activity {
 		mSharedPrefs = this.getSharedPreferences("com.mhmt.wheresmycar", Context.MODE_PRIVATE);
 		bc = new LatLngBounds.Builder();
 		
-		actionBar = getActionBar();
+		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		try{
